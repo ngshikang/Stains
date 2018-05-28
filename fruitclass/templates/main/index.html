@@ -1,0 +1,29 @@
+
+{% extends "base.html" %}
+{% block content %}
+<h1>Image Classification of Stains</h1>
+	<form method="post" action="" enctype="multipart/form-data"> {% csrf_token %}
+{{ form.as_p }}
+    <input type="submit" value="Submit" />
+</form>
+
+<h2>Stain Classification Results</h2>
+
+<table class="table-striped table-bordered">
+    <tr>
+        <th>Stain Type</th>
+        <th>Probability</th>
+    </tr>
+    {% for item in text %}
+    <tr>
+        <td>{{ item.0 }}</td>
+        <td>{{ item.1 }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h2>Submitted Image</h2>
+
+<img src="{{img}}" >
+
+{% endblock %}
